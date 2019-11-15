@@ -44,6 +44,21 @@ class App extends Component {
   };
 
   render() {
+    const summary = Object.keys(this.state.selected).map((feature, idx) => {
+      const featureHash = feature + '-' + idx;
+      const selectedOption = this.state.selected[feature];
+
+      return (
+        <div className="summary__option" key={featureHash}>
+          <div className="summary__option__label">{feature} </div>
+          <div className="summary__option__value">{selectedOption.name}</div>
+          <div className="summary__option__cost">
+            {USCurrencyFormat.format(selectedOption.cost)}
+          </div>
+        </div>
+      );
+    });
+    
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
@@ -72,21 +87,6 @@ class App extends Component {
           </legend>
           {options}
         </fieldset>
-      );
-    });
-
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
       );
     });
 
