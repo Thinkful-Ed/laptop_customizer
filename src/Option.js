@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-let USCurrencyFormat = new Intl.NumberFormat("en-US", {
+import slugify from "slugify";
+const USCurrencyFormat = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
 });
@@ -8,14 +8,25 @@ let USCurrencyFormat = new Intl.NumberFormat("en-US", {
 class Option extends Component {
   render() {
     return (
-      <>
-        <div className="summary__option__value">
-          {this.props.selectedOption.name}
-        </div>
-        <div className="summary__option__cost">
-          {USCurrencyFormat.format(this.props.selectedOption.cost)}
-        </div>
-      </>
+      <div key={this.props.itemHash} className="feature__item">
+        <input
+          type="radio"
+          id={this.props.itemHash}
+          className="feature__option"
+          name={slugify(this.props.feature)}
+          checked={
+            this.props.item.name ===
+            this.props.selected[this.props.feature].name
+          }
+          onChange={e =>
+            this.props.updateFeature(this.props.feature, this.props.item)
+          }
+        />
+        <label htmlFor={this.props.itemHash} className="feature__label">
+          {this.props.item.name} (
+          {USCurrencyFormat.format(this.props.item.cost)})
+        </label>
+      </div>
     );
   }
 }
