@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header/Header';
 import Features from './Features/Features';
-import SummaryOption from './SummaryOption/SummaryOption';
+import Summary from './Summary/Summary';
 import Total from './Total/Total'
 
 import './App.css';
@@ -59,7 +59,7 @@ class App extends Component {
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
-            <SummaryOption
+            <Summary
               selected={this.state.selected}
               USCurrencyFormat={USCurrencyFormat}
             />
