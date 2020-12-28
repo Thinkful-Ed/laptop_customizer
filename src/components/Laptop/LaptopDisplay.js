@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LaptopItem from "./LaptopItems";
+import LaptopItems from "./LaptopItems";
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from "slugify";
@@ -11,11 +11,12 @@ class LaptopDisplay extends Component {
       const options = this.props.features[feature].map((item) => {
         const itemHash = slugify(JSON.stringify(item));
         return (
-          <LaptopItem
+          <LaptopItems
             itemHash={itemHash}
             item={item}
             feature={feature}
             updateFeature={this.props.updateFeature}
+            {...this.props}
           />
         );
       });

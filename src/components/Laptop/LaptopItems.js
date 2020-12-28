@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // in both URLs and html attributes
 import slugify from "slugify";
 
-class LaptopItem extends Component {
+class LaptopItems extends Component {
   render() {
     return (
       <div key={this.props.itemHash} className="feature__item">
@@ -13,11 +13,10 @@ class LaptopItem extends Component {
           className="feature__option"
           name={slugify(this.props.feature)}
           checked={
-            this.props.item.name ===
-            this.props.selected[this.props.feature].name
+            this.props.name === this.props.selected[this.props.feature].name
           }
           onChange={(e) =>
-            this.updateFeature(this.props.feature, this.props.item)
+            this.props.updateFeature(this.props.feature, this.props.item)
           }
         />
         <label htmlFor={this.props.itemHash} className="feature__label">
@@ -29,4 +28,4 @@ class LaptopItem extends Component {
   }
 }
 
-export default LaptopItem;
+export default LaptopItems;
