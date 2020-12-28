@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import ShoppingCartDisplay from "./components/ShoppingCart/ShoppingCartDisplay";
 import ShoppingCartTotal from "./components/ShoppingCart/ShoppingCartTotal";
+import features from "./components/Features/Features";
 
 import "./App.css";
 import LaptopItem from "./components/Laptop/LaptopItems";
+import LaptopDisplay from "./components/Laptop/LaptopDisplay";
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -48,7 +50,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <main>
-          <LaptopItem
+          <LaptopDisplay
             selected={this.state.selected}
             features={this.props.features}
             updateFeature={this.updateFeature}
