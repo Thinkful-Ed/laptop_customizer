@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import ShoppingCartDisplay from "./components/ShoppingCart/ShoppingCartDisplay";
 import LaptopDisplay from "./components/Laptop/LaptopDisplay";
+import features from "./featuresData";
 import "./App.css";
 
 // This object will allow us to
@@ -48,7 +49,7 @@ class App extends Component {
         <main>
           <LaptopDisplay
             selected={this.state.selected}
-            features={this.props.features}
+            features={features}
             updateFeature={this.updateFeature}
             USCurrencyFormat={USCurrencyFormat}
           />
