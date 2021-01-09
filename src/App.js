@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import slugify from 'slugify';
 
 import './App.css';
+// import Summary from './components/Summary';
+// import Features from './components/Features';
 
 // This object will allow us to
 // easily convert numbers into US dollar values
@@ -35,6 +37,8 @@ class App extends Component {
     }
   };
 
+//Computer Part Features Component
+
   updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
@@ -44,6 +48,7 @@ class App extends Component {
   };
 
   render() {
+    
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
@@ -74,7 +79,7 @@ class App extends Component {
         </fieldset>
       );
     });
-
+// Cart Component
     const summary = Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
