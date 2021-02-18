@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Option from './components/Option.js';
 import Feature from './components/Feature';
+import SummaryOption from './components/SummaryOption';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
 import slugify from 'slugify';
@@ -58,36 +59,14 @@ class App extends Component {
             onChange={e => this.updateFeature(feature, item)}
             itemHash={itemHash}
           />
-
-
-          // <div key={itemHash} className="feature__item">
-          //   <input
-          //     type="radio"
-          //     id={itemHash}
-          //     className="feature__option"
-          //     name={slugify(feature)}
-          //     checked={item.name === this.state.selected[feature].name}
-          //     onChange={e => this.updateFeature(feature, item)}
-          //   />
-          //   <label htmlFor={itemHash} className="feature__label">
-          //     {item.name} ({USCurrencyFormat.format(item.cost)})
-          //   </label>
-          // </div>
         );
       });
-
       return (
         <Feature
           key={featureHash}
           feature={feature}
           options={options}
         />
-        // <fieldset className="feature" key={featureHash}>
-        //   <legend className="feature__name">
-        //     <h3>{feature}</h3>
-        //   </legend>
-        //   {options}
-        // </fieldset>
       );
     });
 
@@ -95,14 +74,20 @@ class App extends Component {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
 
+
       return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
+        <SummaryOption
+          key={featureHash}
+          currencyFormat={USCurrencyFormat}
+          selectedOption={selectedOption}
+        />
+        // <div className="summary__option" key={featureHash}>
+        //   <div className="summary__option__label">{feature} </div>
+        //   <div className="summary__option__value">{selectedOption.name}</div>
+        //   <div className="summary__option__cost">
+        //     {USCurrencyFormat.format(selectedOption.cost)}
+        //   </div>
+        // </div>
       );
     });
 
