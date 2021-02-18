@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Option from './components/Option.js';
+import Feature from './components/Feature';
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
-
+import slugify from 'slugify';
 import './App.css';
 
 // This object will allow us to
@@ -46,13 +47,16 @@ class App extends Component {
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const options = this.props.features[feature].map(item => {
+        const itemHash = slugify(JSON.stringify(item));
         return (
           <Option
+            key={itemHash}
             item={item}
             feature={feature}
             currencyFormat={USCurrencyFormat}
             selected={this.state.selected[feature].name}
             onChange={e => this.updateFeature(feature, item)}
+            itemHash={itemHash}
           />
 
 
@@ -73,12 +77,17 @@ class App extends Component {
       });
 
       return (
-        <fieldset className="feature" key={featureHash}>
-          <legend className="feature__name">
-            <h3>{feature}</h3>
-          </legend>
-          {options}
-        </fieldset>
+        <Feature
+          key={featureHash}
+          feature={feature}
+          options={options}
+        />
+        // <fieldset className="feature" key={featureHash}>
+        //   <legend className="feature__name">
+        //     <h3>{feature}</h3>
+        //   </legend>
+        //   {options}
+        // </fieldset>
       );
     });
 
